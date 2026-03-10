@@ -1,5 +1,5 @@
 /*
-  RFID ACCES SYSTEM
+  RFID ACCESS SYSTEM
   
   Controls:
   Click on the RFID reader and choose one of
@@ -22,6 +22,10 @@ constexpr int buzzerPin = 8;
 // Frequency
 constexpr int buzzerFrequencyGood = 1000;
 constexpr int buzzerFrequencyBad = 200;
+
+// Timing
+constexpr int feedbackDuration = 500;
+constexpr int scanCooldown = 250;
 
 MFRC522 rfid(ssPin, rstPin); 
 
@@ -70,18 +74,18 @@ void loop()
 
   if (isAdmin)
   {
-    Serial.println("Bonjour");
+    Serial.println("Access granted");
     digitalWrite(greenLedPin, HIGH);
     tone(buzzerPin, buzzerFrequencyGood);
   }
   else
   {
-    Serial.println("Accès refusé");
+    Serial.println("Access denied");
     digitalWrite(redLedPin, HIGH);
     tone(buzzerPin, buzzerFrequencyBad);
   }
 
-  delay(500);
+  delay(feedbackDuration);
   noTone(buzzerPin);
   digitalWrite(greenLedPin, LOW);
   digitalWrite(redLedPin, LOW);
@@ -89,5 +93,5 @@ void loop()
   rfid.PICC_HaltA();
   rfid.PCD_StopCrypto1();
 
-  delay(500);
+  delay(scanCooldown);
 }
