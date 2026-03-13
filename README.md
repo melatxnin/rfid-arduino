@@ -1,10 +1,13 @@
-# Arduino RFID Acces System (WOKWI)
+# RFID Access Control - Arduino (Wokwi)
 
-Simulation of RFID access control system using Arduino.
+A simple RFID card access system built with Arduino.
+
+<img src="preview.gif" width="500">
 
 ## Components
 
 - Arduino Uno
+- Half Breadboard
 - MFRC522 RFID Reader
 - Resistor 220Ω (2)
 - LED (2)
